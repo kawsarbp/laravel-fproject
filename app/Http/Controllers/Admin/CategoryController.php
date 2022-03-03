@@ -100,7 +100,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|unique:categories',
+            'name' => 'required|string|min:4|max:20|unique:categories,id,'.$id,
             'status' => 'required|string'
         ]);
         try {
@@ -128,7 +128,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-
         try {
             $category = Category::find($id);
             $category->delete();

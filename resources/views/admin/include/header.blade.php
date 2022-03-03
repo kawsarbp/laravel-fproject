@@ -36,10 +36,21 @@
                         <li><a class="dropdown-item {{request()->is('admin/category')?'active':'' }}" href="{{route('admin.category.index')}}">Manage Categories</a></li>
                     </ul>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{{route('user.logout')}}">Logout</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {{request()->is('admin/post')?'active':'' }} {{request()->is('admin/post/create')?'active':'' }}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Posts
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item {{request()->is('admin/post/create')?'active':'' }}" href="{{route('admin.post.create')}}">Add Post</a></li>
+                        <li><a class="dropdown-item {{request()->is('admin/post')?'active':'' }}" href="{{route('admin.post.index')}}">Manage Posts</a></li>
+                    </ul>
+                </li>
+                <form action="{{route('user.logout')}}" method="POST">
+                    @csrf
+                    <a href="{{route('user.logout')}}" onclick="event.preventDefault(); this.closest('form').submit()" class="nav-link">LogOut</a>
+                </form>
             </ul>
         </div>
     </div>
 </nav>
-<!-- Page header with logo and tagline-->
 <br>
