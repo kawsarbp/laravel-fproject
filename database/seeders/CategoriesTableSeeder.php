@@ -14,6 +14,11 @@ class CategoriesTableSeeder extends Seeder
      *
      * @return void
      */
+    private function randstatus()
+    {
+        $status = ['active'=>'active','inactive'=>'inactive'];
+        return array_rand($status);
+    }
     public function run()
     {
         $faker = Factory::create();
@@ -24,7 +29,7 @@ class CategoriesTableSeeder extends Seeder
                 'user_id' => rand(1,13),
                 'name' => $name,
                 'slug' => strtolower(str_replace(' ','-',$name)),
-                'status' => 'active',
+                'status' => $this->randstatus(),
             ]);
         }
     }

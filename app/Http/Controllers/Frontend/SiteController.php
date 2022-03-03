@@ -1,9 +1,7 @@
 <?php
-
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-
 //use Dotenv\Validator;
 use App\Http\Requests\UserRegistration;
 use App\Models\User;
@@ -73,7 +71,7 @@ class SiteController extends Controller
             'password' => 'required|min:6',
         ]);
         if (auth()->attempt($data)) {
-            return redirect('/');
+            return redirect()->route('admin.dashboard');
         } else {
             session()->flash('type','danger');
             session()->flash('message','Dose not match!');
